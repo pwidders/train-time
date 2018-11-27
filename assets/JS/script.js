@@ -31,7 +31,15 @@ $(document).ready( function() {
             var destination = $('#destination').val();
             var firstTrainTime = $('#first-train-time').val();
             var frequency = $('#frequency').val();
-            console.log(frequency);
+            var ref = database.ref('trains');
+            var trainData = {
+                name: trainName,
+                destination: destination,
+                firstTrainTime: firstTrainTime,
+                frequency: frequency
+            }
+            console.log(trainData);
+            ref.push(trainData);
         })
         // Function to save data 
 
