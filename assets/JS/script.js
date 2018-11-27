@@ -20,10 +20,22 @@ $(document).ready( function() {
     firebase.initializeApp(config);
     console.log(firebase);
 
-    // Admins should be able to submit train name, destination, first-train time (in military hours) and frequency (in minutes).
+    // Submitting train admin information
 
     // Global variables
     var database = firebase.database();
+   
+        // Click listener for submit button
+        $('#submit-button').on('click', function() {
+            var trainName = $('#train-name').val();
+            var destination = $('#destination').val();
+            var firstTrainTime = $('#first-train-time').val();
+            var frequency = $('#frequency').val();
+            console.log(frequency);
+        })
+        // Function to save data 
+
+
 
 
 
