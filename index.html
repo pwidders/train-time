@@ -13,29 +13,44 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
 
     <title>Train time</title>
+
 </head>
 
 <body>
 
 <div class="container-fluid">
-    <div class="container col-6">
+    <div class="container col-8">
         <div class="header">
            <h1>Train time!</h1> 
         </div>
         <br>
         <div class="card">
             <div class="card-header">
-                Featured
+                Current train schedule:
             </div>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+
+                        <th scope="col">Train Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Frequency(min)</th>
+                        <th scope="col">Next Arrival</th>
+                        <th scope="col">Minutes Away</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="train-times">
+                      
+                    </tbody>
+                </table>
             </div>
         </div>
         <br>
         <div class="card">
             <div class="card-header">
-                Featured
+                Add train:
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -54,16 +69,16 @@
                 
                 <div class="form-group">
                     <label for="Train Name">
-                        <h6>First train time:</h6>
+                        <h6>First train time (HH:mm- military time)</h6>
                     </label>
-                    <input type="text" class="form-control" name="train-name" id="first-train-time">
+                    <input type="time" class="form-control" name="train-name" id="first-train-time">
                 </div>
                 
                 <div class="form-group">
                     <label for="Train Name">
-                        <h6>Frequency</h6>
+                        <h6>Frequency (minutes)</h6>
                     </label>
-                    <input type="text" class="form-control" name="train-name" id="frequency">
+                    <input type="number" name="quantity" min="1" max="9" class="form-control" name="train-name" id="frequency">
                 </div>
 
                 <button type="submit" id= "submit-button" class="btn btn-primary">Submit</button>
@@ -74,6 +89,10 @@
 
 <!--JQuery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--Moment.js-->
+<script src="./assets/JS/moment.js"></script>
+<!--Luxon JS-->
+<!--<script src="assets/JS/./luxon.js"></script>-->
 <!--JavaScript-->
 <script src="./assets/JS/script.js"></script>
 <!-- then Popper.js, then Bootstrap JS -->

@@ -20,7 +20,10 @@ $(document).ready( function() {
     firebase.initializeApp(config);
     console.log(firebase);
 
-    // Submitting train admin information
+    // Step 1- Submitting train admin information to database
+
+    // Setting up local time
+    
 
     // Global variables
     var database = firebase.database();
@@ -39,13 +42,45 @@ $(document).ready( function() {
                 frequency: frequency
             }
             console.log(trainData);
+            //  Store data in database
             ref.push(trainData);
         })
-        // Function to save data 
+    
+    // Retrieving information from database
+    var reference = database.ref('trains');
+    reference.on('value', gotData, errorData);   
+    
+    function gotData(data) {
+        // Clear all current times
+        $('#train-times').each(function() {
+            $('#train-times').empty();
+        })
+        var trains = data.val(); 
+        // Turn object into iterable array with individual keys
+        var keys = Object.keys(trains); 
+        // for loop to index through keys
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i]; 
+            var trainNameDisplay = trains[k].name; 
+            var destinationDisplay = trains[k].destination;
+            var firstTrainTimeDisplay = trains[k].firstTrainTime;
+            var frequencyDisplay = trains[k].frequency;
 
+            // Append train data to table on page
+            // create td's and append to tr
+            // tr append to tbody
+            var row = $('<tr>');
+            var td = $('<td>').text(trainNameDisplay);
+            var td1 = $('<td>').text(destinationDisplay);
+            var td2 = $('<td>').text(frequencyDisplay);
+            $("#train-times").append(row).append(td, td1, td2);
+            
+        }
 
+    }
 
-
-
+    function errorData(error) {
+        console.log("Error!", error);
+    }
 
 })
