@@ -1,0 +1,18 @@
+.container-fluid {
+    background-image: url("../images/pipes.png");
+}
+
+.card-header {
+    color: cornflowerblue;
+    background-color: lightgrey;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+.card-body {
+    background-color: linen;
+}
+
