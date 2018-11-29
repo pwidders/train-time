@@ -73,8 +73,35 @@ $(document).ready( function() {
             var td = $('<td>').text(trainNameDisplay);
             var td1 = $('<td>').text(destinationDisplay);
             var td2 = $('<td>').text(frequencyDisplay);
-            $("#train-times").append(row).append(td, td1, td2);
-            
+
+            // First Time (pushed back 1 year to make sure it comes before current time)
+            var firstTimeConverted = moment(firstTrainTimeDisplay, "HH:mm").subtract(1, "years");
+            console.log(firstTimeConverted);
+
+            // Current Time
+            var currentTime = moment();
+            console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+            // Difference between the times
+            var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+            console.log("DIFFERENCE IN TIME: " + diffTime);
+
+            // Time apart (remainder)
+            var tRemainder = diffTime % frequencyDisplay;
+            console.log(tRemainder);
+
+            // Minute Until Train
+            var tMinutesTillTrain = frequencyDisplay - tRemainder;
+            console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+            // Next Train
+            var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+            console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
+            var td3 = $('<td>').text(nextTrain);
+            var td4 = $('<td>').text(tMinutesTillTrain)
+
+            $("#train-times").append(row).append(td, td1, td2, td3, td4);
         }
 
     }
