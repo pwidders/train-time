@@ -41,7 +41,6 @@ $(document).ready( function() {
                 firstTrainTime: firstTrainTime,
                 frequency: frequency
             }
-            console.log(trainData);
             //  Store data in database
             ref.push(trainData);
         })
@@ -58,6 +57,7 @@ $(document).ready( function() {
         var trains = data.val(); 
         // Turn object into iterable array with individual keys
         var keys = Object.keys(trains); 
+        console.log(keys);
         // for loop to index through keys
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i]; 
@@ -76,27 +76,26 @@ $(document).ready( function() {
 
             // First Time (pushed back 1 year to make sure it comes before current time)
             var firstTimeConverted = moment(firstTrainTimeDisplay, "HH:mm").subtract(1, "years");
-            console.log(firstTimeConverted);
 
             // Current Time
             var currentTime = moment();
-            console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+            //console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
             // Difference between the times
             var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-            console.log("DIFFERENCE IN TIME: " + diffTime);
+            //console.log("DIFFERENCE IN TIME: " + diffTime);
 
             // Time apart (remainder)
             var tRemainder = diffTime % frequencyDisplay;
-            console.log(tRemainder);
+            //console.log(tRemainder);
 
             // Minute Until Train
             var tMinutesTillTrain = frequencyDisplay - tRemainder;
-            console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+            //console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
 
             // Next Train
             var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-            console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+            //console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
             var td3 = $('<td>').text(nextTrain);
             var td4 = $('<td>').text(tMinutesTillTrain)
